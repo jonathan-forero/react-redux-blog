@@ -1,8 +1,18 @@
 import React from 'react';
+import axios from 'axios';
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      users: []
+    }
+  }
+
+  async componentDidMount() {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+    console.log(response);
+    this.setState({
       users: [
         {
           name: 'Tatán',
@@ -15,7 +25,7 @@ class App extends React.Component {
           link: 'https:/platzi.com'
         }
       ]
-    }
+    });
   }
 
   setRows = () => (
@@ -25,10 +35,10 @@ class App extends React.Component {
           { user.name }
         </td>
         <td>
-        { user.email }
+          { user.email }
         </td>
         <td>
-        { user.link }
+          { user.link }
         </td>
       </tr>
     ))
