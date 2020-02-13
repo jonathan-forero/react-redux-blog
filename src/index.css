@@ -6,3 +6,8 @@
   text-align: left;
   width: 100%;
 }
+
+.table td {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
