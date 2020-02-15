@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import * as usersActions from '../../actions/usersActions';
 
 class Users extends React.Component {
 
-  /* async componentDidMount() {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+  componentDidMount() {
+    /* const response = await axios.get('https://jsonplaceholder.typicode.com/users');
     this.setState({
       users: response.data
-    });
-  } */
+    }); */
+    this.props.getAll();
+  }
 
   setRows = () => (
     this.props.users.map((user) => (
@@ -54,7 +56,7 @@ class Users extends React.Component {
 }
 
 const mapStateToProps = (reducers) => {
-  return reducers.userReducer;
+  return reducers.usersReducer;
 };
 
-export default connect(mapStateToProps, {/*Actions */})(Users);
+export default connect(mapStateToProps, usersActions)(Users);
