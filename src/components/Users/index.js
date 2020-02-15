@@ -34,7 +34,7 @@ class Users extends React.Component {
 
   render () {
     return (
-      <div className="margin">
+      <div>
         <table className="table">
           <thead>
             <tr>
