@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## DEMO: https://jonathan-forero.github.io/react-redux-blog/index.html
+## DEMO: https://jonathan-forero.github.io/react-redux-blog
 
 ## Available Scripts
 
