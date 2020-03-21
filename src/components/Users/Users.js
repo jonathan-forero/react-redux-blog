@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from '../Spinner/Spinner';
 
 class Users extends React.Component {
 
@@ -22,9 +23,10 @@ class Users extends React.Component {
     ))
   );
 
-  render () {
-    return (
-      <div>
+  setContent = () => {
+    return this.props.loading ?
+      <Spinner />:
+      (
         <table className="table">
           <thead>
             <tr>
@@ -43,6 +45,13 @@ class Users extends React.Component {
             { this.setRows() }
           </tbody>
         </table>
+      );
+  }
+
+  render () {
+    return (
+      <div>
+        { this.setContent() }
       </div>
     );
   }
