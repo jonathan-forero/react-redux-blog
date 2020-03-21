@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Error/Error';
+import Table from '../Table';
 
 class Users extends React.Component {
 
@@ -8,52 +9,18 @@ class Users extends React.Component {
     this.props.getAll();
   }
 
-  setRows = () => (
-    this.props.users.map((user) => (
-      <tr key={ user.id }>
-        <td>
-          { user.name }
-        </td>
-        <td>
-          { user.email }
-        </td>
-        <td>
-          { user.website }
-        </td>
-      </tr>
-    ))
-  );
-
   setContent = () => {
-    return this.props.error ?
-      <Error message={this.props.error} />:
-      this.props.loading ?
-        <Spinner />:
-        (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Email
-                </th>
-                <th>
-                  Link
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              { this.setRows() }
-            </tbody>
-          </table>
-        );
+    return (
+      this.props.error ?
+        <Error message={this.props.error} /> :
+        this.props.loading ? <Spinner /> : <Table />
+    );
   }
 
   render () {
     return (
       <div>
+        <h1>Users</h1>
         { this.setContent() }
       </div>
     );
