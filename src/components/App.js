@@ -10,6 +10,7 @@ const App = () => (
     <Menu />
     <div className="margin">
       <Route exact path='/' component={ Users } />
+      <Route exact path='/users' component={ Users } />
       <Route exact path='/tasks' component={ Tasks } />
     </div>
   </BrowserRouter>
