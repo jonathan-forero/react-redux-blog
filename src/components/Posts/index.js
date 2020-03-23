@@ -1,14 +1,26 @@
 import { connect } from 'react-redux';
 import Posts from './Posts';
 import * as usersActions from '../../actions/users/usersActions';
+import * as postsActions from '../../actions/posts/postsActions';
 
-const mapStateToProps = (reducers) => {
-  return reducers.usersReducer;
+const { getAll: getAllUsers } = usersActions;
+const { getAll: getAllPosts } = postsActions;
+
+const mapStateToProps = ({ usersReducer, postsReducer }) => {
+  return {
+    usersReducer,
+    postsReducer,
+  };
+};
+
+const dispatchToProps = {
+  getAllUsers,
+  getAllPosts,
 };
 
 const PostsConnect = connect(
   mapStateToProps,
-  usersActions
+  dispatchToProps
 )(Posts);
 
 export default PostsConnect;

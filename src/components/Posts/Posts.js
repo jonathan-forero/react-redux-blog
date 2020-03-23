@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 class Posts extends Component {
 
   componentDidMount() {
-    if(!this.props.users.length){
-      this.props.getAll();
+    if(!this.props.usersReducer.users.length){
+      this.props.getAllUsers();
     }
+    this.props.getAllPosts();
   }
 
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <h1>
