@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Posts from './Posts';
+import * as usersActions from '../../actions/users/usersActions';
 
-class Posts extends Component {
-  render() {
-    return (
-      <div>
-        { this.props.match.params.key }
-      </div>
-    );
-  }
-}
+const mapStateToProps = (reducers) => {
+  return reducers.usersReducer;
+};
 
-export default Posts;
+const PostsConnect = connect(
+  mapStateToProps,
+  usersActions
+)(Posts);
+
+export default PostsConnect;
