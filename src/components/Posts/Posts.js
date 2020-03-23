@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 class Posts extends Component {
 
-  componentDidMount() {
+  async componentDidMount() {
     if(!this.props.usersReducer.users.length){
-      this.props.getAllUsers();
+      await this.props.getAllUsers();
     }
-    this.props.getAllPosts();
+    this.props.getPostsByUser(this.props.match.params.key);
   }
 
   render() {
@@ -17,7 +17,6 @@ class Posts extends Component {
         <h1>
           Posts from ...
         </h1>
-        { this.props.match.params.key }
       </div>
     );
   }
