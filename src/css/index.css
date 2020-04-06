@@ -34,3 +34,19 @@ body {
 .red {
   color: red;
 }
+
+.post_title {
+  cursor: pointer;
+  -webkit-box-shadow: 3px 4px 9px -1px rgba(163,163,163,0.54);
+  -moz-box-shadow: 3px 4px 9px -1px rgba(163,163,163,0.54);
+  box-shadow: 3px 4px 9px -1px rgba(163,163,163,0.54);
+  padding: 25px;
+  margin: auto;
+  margin-bottom: 10px;
+  width: 70%;
+}
+
+.post_title:hover {
+  transform: scale(1.02);
+  transition: all .50s ease-out;
+}

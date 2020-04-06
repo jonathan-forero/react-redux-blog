@@ -2,16 +2,15 @@ import axios from 'axios';
 import * as ActionType from '../posts/types';
 import * as UsuariosTypes from '../users/types';
 
-const { GET_ALL: USERS_GET_ALL } = UsuariosTypes;
-
 export const getByUser = (key) => async (dispatch, getState) => {
+    dispatch({
+        type: ActionType.LOADING
+    });
+
     const { users } = getState().usersReducer;
     const { posts } = getState().postsReducer;
     const user_id = users[key].id;
 
-    dispatch({
-        type: ActionType.LOADING
-    });
     try {
         const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${user_id}`);
 
@@ -19,6 +18,11 @@ export const getByUser = (key) => async (dispatch, getState) => {
             ...posts,
             response.data
         ];
+
+        dispatch({
+            type: ActionType.GET_BY_USER,
+            payload: updated_posts
+        });
 
         const posts_key = updated_posts.length - 1;
         const updated_users = [...users];
@@ -28,18 +32,14 @@ export const getByUser = (key) => async (dispatch, getState) => {
         };
 
         dispatch({
-            type: USERS_GET_ALL,
+            type: UsuariosTypes.GET_ALL,
             payload: updated_users
         });
 
-        dispatch({
-            type: ActionType.GET_BY_USER,
-            payload: updated_posts
-        });
     } catch (error) {
         dispatch({
             type: ActionType.ERROR,
-            payload: error.message
+            payload: error.message + ' posts not available'
         });
     }
 }

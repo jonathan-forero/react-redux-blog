@@ -14,7 +14,7 @@ export const getAll = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ActionType.ERROR,
-            payload: error.message
+            payload: error.message + ' - User info not available'
         });
     }
 }

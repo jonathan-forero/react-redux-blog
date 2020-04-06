@@ -16,6 +16,13 @@ export default (state = INITIAL_STATE, action) => {
                 error: ''
             };
 
+        case ActionType.ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
+
         default: return state;
     }
 }
