@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Error/Error';
+import { useReducer } from 'react';
 
 class Posts extends Component {
 
@@ -28,20 +29,13 @@ class Posts extends Component {
       match: { params: { key } }
     } = this.props;
 
-    if (usersReducer.error) {
-      return <Error  message={usersReducer.error} />;
-    }
-
-    if (usersReducer.loading) {
-      return <Spinner />;
-    }
-
     const name = usersReducer.users.length ? usersReducer.users[key].name : null;
 
     return (
-      <h1>
-        Posts from { name }
-      </h1>
+      useReducer.error ?
+        <Error message={usersReducer.error} /> :
+          useReducer.loading ? <Spinner /> :
+            (<h1>Posts from { name }</h1>)
     );
   };
 
