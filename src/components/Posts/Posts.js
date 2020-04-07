@@ -68,6 +68,9 @@ class Posts extends Component {
         <p>
           { post.body }
         </p>
+        {
+          post.open ? 'open' : 'closed'
+        }
       </div>
     ))
   );

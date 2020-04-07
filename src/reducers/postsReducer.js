@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case ActionType.GET_BY_USER:
+        case ActionType.UPDATE:
             return {
                 ...state,
                 posts: action.payload,

@@ -26,7 +26,7 @@ export const getByUser = (key) => async (dispatch, getState) => {
         ];
 
         dispatch({
-            type: ActionType.GET_BY_USER,
+            type: ActionType.UPDATE,
             payload: updated_posts
         });
 
@@ -50,6 +50,23 @@ export const getByUser = (key) => async (dispatch, getState) => {
     }
 }
 
-export const openClose = (post_key, com_key) => (dispatch) => {
-    console.log(post_key, com_key);
+export const openClose = (post_key, com_key) => (dispatch, getState) => {
+    const { posts } = getState().postsReducer;
+    const selected = posts[post_key][com_key];
+    const updated = {
+        ...selected,
+        open: !selected.open
+    }
+    posts[post_key][com_key] = updated;
+    try {
+        dispatch({
+            type: ActionType.UPDATE,
+            payload: posts
+        });
+    } catch (error) {
+        dispatch({
+            type: ActionType.ERROR,
+            payload: error.message
+        });
+    }
 }
