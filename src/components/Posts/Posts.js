@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Error/Error';
-import { useReducer } from 'react';
 
 class Posts extends Component {
 
@@ -51,23 +50,27 @@ class Posts extends Component {
       postsReducer.error ? <Error message={postsReducer.error}/> :
         postsReducer.loading ? <Spinner /> :
           posts.length && 'posts_key' in users[key] ? (
-            posts[users[key].posts_key].map( post => (
-              <div
-                className="post_title"
-                key={ post.id }
-                onClick={ () => alert(post.id) }
-              >
-                <h2>
-                  { post.title }
-                </h2>
-                <p>
-                  { post.body }
-                </p>
-              </div>
-            ))
+            this.showInfo(posts[users[key].posts_key], users[key].posts_key)
           ) : null
     )
-  }
+  };
+
+  showInfo = (posts, post_key) => (
+    posts.map( (post, com_key) => (
+      <div
+        className="post_title"
+        key={ post.id }
+        onClick={ () => this.props.openClose(post_key, com_key) }
+      >
+        <h2>
+          { post.title }
+        </h2>
+        <p>
+          { post.body }
+        </p>
+      </div>
+    ))
+  );
 
   render() {
     console.log(this.props);
