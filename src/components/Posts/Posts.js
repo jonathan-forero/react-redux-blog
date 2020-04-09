@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Error/Error';
+import Comments from '../Comments/Comments';
 
 class Posts extends Component {
 
@@ -60,7 +61,7 @@ class Posts extends Component {
       <div
         className="post_title"
         key={ post.id }
-        onClick={ () => this.props.openClose(post_key, com_key) }
+        onClick={ () => this.showComments(post_key, com_key, post.comments) }
       >
         <h2>
           { post.title }
@@ -69,11 +70,16 @@ class Posts extends Component {
           { post.body }
         </p>
         {
-          post.open ? 'open' : 'closed'
+          post.open ? <Comments /> : ''
         }
       </div>
     ))
   );
+
+  showComments = (post_key, com_key, comments) => {
+    this.props.openClose(post_key, com_key);
+    this.props.getComments(post_key, com_key);
+  };
 
   render() {
     console.log(this.props);

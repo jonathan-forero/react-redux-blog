@@ -70,3 +70,7 @@ export const openClose = (post_key, com_key) => (dispatch, getState) => {
         });
     }
 }
+
+export const getComments = (post_key, com_key) => (dispatch, getState) => {
+
+}
