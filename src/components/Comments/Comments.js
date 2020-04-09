@@ -1,20 +1,32 @@
 import React from 'react';
+import Spinner from '../Spinner/Spinner';
+import Error from '../Error/Error';
 
 const Comments = (props) => {
+  const setComments = () => (
+    props.comments.map(comment => (
+      <li key={comment.id}>
+        <b>
+          <u>
+            { comment.email }
+          </u>
+        </b>
+        <br/>
+        { comment.body }
+      </li>
+    ))
+  );
+
   return (
-    <div>
-      <ul>
-        <li>
-          HOLA
-        </li>
-        <li>
-          HOLA
-        </li>
-        <li>
-          HOLA
-        </li>
-      </ul>
-    </div>
+    props.errorComments ? <Error  message={props.error}/> :
+      props.loadingComments ? <Spinner /> :
+        (
+          <div>
+            <ul className="comments">
+              { setComments() }
+            </ul>
+          </div>
+        )
   );
 }
 

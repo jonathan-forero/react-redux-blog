@@ -3,7 +3,9 @@ import * as ActionType from '../actions/posts/types';
 const INITIAL_STATE = {
     posts: [],
     loading: false,
-    error: ''
+    error: '',
+    loadingComments: false,
+    errorComments: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -21,6 +23,25 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 error: action.payload,
                 loading: false
+            };
+
+        case ActionType.LOADING:
+            return {
+                ...state,
+                loading: true
+            };
+
+        case ActionType.ERROR_COMMENTS:
+            return {
+                ...state,
+                errorComments: action.payload,
+                loadingComments: false
+            };
+
+        case ActionType.LOADING_COMMENTS:
+            return {
+                ...state,
+                loadingComments: true
             };
 
         default: return state;

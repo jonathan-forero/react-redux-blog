@@ -1,10 +1,10 @@
 import axios from 'axios';
-import * as ActionType from '../posts/types';
+import * as PostsTypes from '../posts/types';
 import * as UsuariosTypes from '../users/types';
 
 export const getByUser = (key) => async (dispatch, getState) => {
     dispatch({
-        type: ActionType.LOADING
+        type: PostsTypes.LOADING
     });
 
     const { users } = getState().usersReducer;
@@ -26,7 +26,7 @@ export const getByUser = (key) => async (dispatch, getState) => {
         ];
 
         dispatch({
-            type: ActionType.UPDATE,
+            type: PostsTypes.UPDATE,
             payload: updated_posts
         });
 
@@ -44,7 +44,7 @@ export const getByUser = (key) => async (dispatch, getState) => {
 
     } catch (error) {
         dispatch({
-            type: ActionType.ERROR,
+            type: PostsTypes.ERROR,
             payload: error.message + ' posts not available'
         });
     }
@@ -60,35 +60,38 @@ export const openClose = (post_key, com_key) => (dispatch, getState) => {
     posts[post_key][com_key] = updated;
     try {
         dispatch({
-            type: ActionType.UPDATE,
+            type: PostsTypes.UPDATE,
             payload: posts
         });
     } catch (error) {
         dispatch({
-            type: ActionType.ERROR,
+            type: PostsTypes.ERROR,
             payload: error.message
         });
     }
 }
 
 export const getComments = (post_key, com_key) => async (dispatch, getState) => {
+    dispatch({
+        type: PostsTypes.LOADING_COMMENTS,
+    });
     const { posts } = getState().postsReducer;
     const selected = posts[post_key][com_key];
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${selected.id}`);
-    const updated = {
-        ...selected,
-        comments: response.data
-    }
-    posts[post_key][com_key] = updated;
     try {
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${selected.id}`);
+        const updated = {
+            ...selected,
+            comments: response.data
+        }
+        posts[post_key][com_key] = updated;
         dispatch({
-            type: ActionType.UPDATE,
+            type: PostsTypes.UPDATE,
             payload: posts
         });
     } catch (error) {
         dispatch({
-            type: ActionType.ERROR,
-            payload: error.message
+            type: PostsTypes.ERROR_COMMENTS,
+            payload: error.message + ' comments not available'
         });
     }
 }

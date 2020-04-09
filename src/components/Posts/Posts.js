@@ -70,7 +70,7 @@ class Posts extends Component {
           { post.body }
         </p>
         {
-          post.open ? <Comments /> : ''
+          post.open ? <Comments comments={post.comments} /> : ''
         }
       </div>
     ))

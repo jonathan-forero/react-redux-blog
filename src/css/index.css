@@ -50,3 +50,7 @@ body {
   transform: scale(1.02);
   transition: all .50s ease-out;
 }
+
+.comments li{
+  margin: 15px 0;
+}
