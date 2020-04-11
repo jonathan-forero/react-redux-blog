@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Error/Error';
-import Comments from '../Comments/Comments';
+import Comments from '../Comments/index';
 
 class Posts extends Component {
 

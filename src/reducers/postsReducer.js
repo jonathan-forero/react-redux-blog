@@ -44,6 +44,14 @@ export default (state = INITIAL_STATE, action) => {
                 loadingComments: true
             };
 
+        case ActionType.UPDATE_COMMENTS:
+            return {
+                ...state,
+                posts: action.payload,
+                loadingComments: false,
+                errorComments: ''
+            };
+
         default: return state;
     }
 }

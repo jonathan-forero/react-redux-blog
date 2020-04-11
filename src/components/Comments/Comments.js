@@ -18,8 +18,8 @@ const Comments = (props) => {
   );
 
   return (
-    props.errorComments ? <Error  message={props.error}/> :
-      props.loadingComments ? <Spinner /> :
+    props.errorComments ? <Error  message={props.errorComments}/> :
+      props.loadingComments && !props.comments.length ? <Spinner /> :
         (
           <div>
             <ul className="comments">
