@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Error/Error';
 
@@ -52,10 +53,13 @@ class Tasks extends Component {
   };
 
   render() {
-    console.log(this.props);
-
     return (
       <div>
+        <Link to='/react-redux-blog/tasks/save'>
+          <button>
+            Add
+          </button>
+        </Link>
         { this.showContent() }
       </div>
     );
