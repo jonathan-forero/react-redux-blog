@@ -26,6 +26,9 @@ export default (state = INITIAL_STATE, action) => {
         case ActionType.CHANGE_TITLE:
             return {...state, title: action.payload};
 
+        case ActionType.TASK_ADDED:
+            return {...state, loading: false, tasks: {}, error: ''};
+
         default: return state;
     }
 }

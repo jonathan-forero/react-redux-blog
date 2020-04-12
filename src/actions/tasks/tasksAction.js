@@ -43,3 +43,23 @@ export const changeTitle = (title) => (dispatch) => {
         payload: title
     });
 }
+
+export const saveTask = (newTask) => async (dispatch) => {
+    dispatch({
+        type: ActionType.LOADING
+    });
+
+    try {
+        await axios.post('https://jsonplaceholder.typicode.com/todos', newTask);
+        dispatch({
+            type: ActionType.TASK_ADDED
+        });
+
+
+    } catch (error) {
+        dispatch({
+            type: ActionType.ERROR,
+            payload: error.message + ' - Save Task Fail, please try later'
+        });
+    }
+}
