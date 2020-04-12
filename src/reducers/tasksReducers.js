@@ -3,7 +3,9 @@ import * as ActionType from '../actions/tasks/types';
 const INITIAL_STATE = {
     tasks: {},
     loading: false,
-    error: ''
+    error: '',
+    userId: '',
+    title: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,6 +19,12 @@ export default (state = INITIAL_STATE, action) => {
 
         case ActionType.ERROR:
             return {...state, error: action.payload, loading: false};
+
+        case ActionType.CHANGE_USER_ID:
+            return {...state, userId: action.payload};
+
+        case ActionType.CHANGE_TITLE:
+            return {...state, title: action.payload};
 
         default: return state;
     }

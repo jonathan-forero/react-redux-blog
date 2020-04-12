@@ -1,12 +1,17 @@
 import { connect } from 'react-redux';
 import Tasks from './Tasks';
+import Save from './Save';
 import * as tasksActions from '../../actions/tasks/tasksAction';
 
 const mapStateToProps = ({ tasksReducer }) => tasksReducer;
 
-const TasksConnect = connect(
+export const TasksConnect = connect(
   mapStateToProps,
   tasksActions
 )(Tasks);
 
-export default TasksConnect;
+export const SaveConnect = connect(
+  mapStateToProps,
+  tasksActions
+)(Save);
+

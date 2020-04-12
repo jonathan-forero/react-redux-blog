@@ -29,3 +29,17 @@ export const getAll = () => async (dispatch) => {
         });
     }
 }
+
+export const changeUserId = (userId) => (dispatch) => {
+    dispatch({
+        type: ActionType.CHANGE_USER_ID,
+        payload: userId
+    });
+}
+
+export const changeTitle = (title) => (dispatch) => {
+    dispatch({
+        type: ActionType.CHANGE_TITLE,
+        payload: title
+    });
+}

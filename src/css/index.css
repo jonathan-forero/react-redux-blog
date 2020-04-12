@@ -60,3 +60,11 @@ body {
   margin-left: 50px;
   margin-bottom: 70px;
 }
+
+.save-tasks {
+  width: 20rem;
+}
+
+.save-tasks input {
+  float: right;
+}
