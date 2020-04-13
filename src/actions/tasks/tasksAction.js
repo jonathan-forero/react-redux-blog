@@ -52,7 +52,7 @@ export const saveTask = (newTask) => async (dispatch) => {
     try {
         await axios.post('https://jsonplaceholder.typicode.com/todos', newTask);
         dispatch({
-            type: ActionType.TASK_ADDED
+            type: ActionType.TASK_SAVED
         });
 
 
@@ -69,6 +69,38 @@ export const editTask = (editedTask) => async (dispatch) => {
         type: ActionType.LOADING
     });
 
-    console.log(editedTask);
+    try {
+        await axios.put(`https://jsonplaceholder.typicode.com/todos/${editedTask.id}`, editedTask);
+        dispatch({
+            type: ActionType.TASK_SAVED
+        });
 
+
+    } catch (error) {
+        dispatch({
+            type: ActionType.ERROR,
+            payload: error.message + ' - Save Task Fail, please try later'
+        });
+    }
+}
+
+export const changeChekbox = (userId, taskId) => (dispatch, getState) => {
+    const { tasks } = getState().tasksReducer;
+    const selected = tasks[userId][taskId];
+
+    const updatedTasks = {
+        ...tasks
+    };
+    updatedTasks[userId] = {
+        ...tasks[userId]
+    };
+    updatedTasks[userId][taskId] = {
+        ...tasks[userId][taskId],
+        completed: !selected.completed
+    };
+
+    dispatch({
+        type: ActionType.UPDATE,
+        payload: updatedTasks
+    });
 }

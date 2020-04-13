@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
         case ActionType.CHANGE_TITLE:
             return {...state, title: action.payload};
 
-        case ActionType.TASK_ADDED:
+        case ActionType.TASK_SAVED:
             return {
                 ...state,
                 loading: false,
@@ -43,6 +43,9 @@ export default (state = INITIAL_STATE, action) => {
                 userId: '',
                 title: ''
             };
+
+        case ActionType.UPDATE:
+            return {...state, tasks: action.payload};
 
         default: return state;
     }
