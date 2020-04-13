@@ -104,3 +104,24 @@ export const changeChekbox = (userId, taskId) => (dispatch, getState) => {
         payload: updatedTasks
     });
 }
+
+export const deleteTask = (taskId) => async (dispatch) => {
+    dispatch({
+        type: ActionType.LOADING
+    });
+
+    try {
+        const response = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${taskId}`);
+        console.log(response);
+        dispatch({
+            type: ActionType.GET_ALL,
+            payload: {}
+        });
+    } catch (error) {
+        console.log(error.message);
+        dispatch({
+            type: ActionType.ERROR,
+            payload: error.message + ' - Delete Task Fail, please try later'
+        });
+    }
+}

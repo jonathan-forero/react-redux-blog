@@ -11,6 +11,12 @@ class Tasks extends Component {
     }
   }
 
+  componentDidUpdate () {
+    if (!Object.keys(this.props.tasks).length) {
+      this.props.getAll();
+    }
+  }
+
   showContent = () => {
     const {
       tasks,
@@ -37,7 +43,7 @@ class Tasks extends Component {
   }
 
   setTasks = (userId) => {
-    const { tasks, changeChekbox } = this.props;
+    const { tasks, changeChekbox, deleteTask } = this.props;
     const byUser = {
       ...tasks[userId]
     };
@@ -57,11 +63,19 @@ class Tasks extends Component {
             Edit
           </button>
         </Link>
+        <button
+          className="m_left"
+          onClick={ () => deleteTask(taskId) }
+        >
+            Delete
+        </button>
       </div>
     ));
   };
 
   render() {
+    console.log(this.props.tasks);
+
     return (
       <div>
         <Link to='/react-redux-blog/tasks/save'>
