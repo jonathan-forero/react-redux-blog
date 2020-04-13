@@ -68,3 +68,7 @@ body {
 .save-tasks input {
   float: right;
 }
+
+.m_left {
+  margin-left: 20px;
+}

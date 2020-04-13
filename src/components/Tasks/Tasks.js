@@ -48,6 +48,11 @@ class Tasks extends Component {
         {
           byUser[taskId].title
         }
+        <Link to={`/react-redux-blog/tasks/save/${userId}/${taskId}`}>
+          <button className="m_left">
+            Edit
+          </button>
+        </Link>
       </div>
     ));
   };

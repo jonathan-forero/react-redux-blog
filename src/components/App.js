@@ -15,6 +15,7 @@ const App = () => (
       <Route exact path='/react-redux-blog/tasks' component={ TasksConnect } />
       <Route exact path='/react-redux-blog/posts/:key' component={ Posts } />
       <Route exact path='/react-redux-blog/tasks/save' component={ SaveConnect } />
+      <Route exact path='/react-redux-blog/tasks/save/:userId/:taskId' component={ SaveConnect } />
     </div>
   </BrowserRouter>
 );

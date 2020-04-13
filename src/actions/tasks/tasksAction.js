@@ -63,3 +63,12 @@ export const saveTask = (newTask) => async (dispatch) => {
         });
     }
 }
+
+export const editTask = (editedTask) => async (dispatch) => {
+    dispatch({
+        type: ActionType.LOADING
+    });
+
+    console.log(editedTask);
+
+}

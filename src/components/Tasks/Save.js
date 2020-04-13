@@ -4,6 +4,22 @@ import Error from '../Error/Error';
 import { Redirect } from 'react-router-dom';
 
 class Save extends Component {
+
+  componentDidMount = () => {
+    const {
+      match: { params: { userId, taskId } },
+      tasks,
+      changeUserId,
+      changeTitle
+    } =  this.props;
+
+    if (userId && taskId) {
+      const task = tasks[userId][taskId];
+      changeUserId(userId);
+      changeTitle(task.title);
+    }
+  };
+
   changeUserId = (event) => {
     this.props.changeUserId(event.target.value);
   };
@@ -13,13 +29,32 @@ class Save extends Component {
   };
 
   save = () => {
-    const { userId, title, saveTask } = this.props;
+    const {
+      match: { params: { userId, taskId } },
+      tasks,
+      title,
+      saveTask,
+      editTask
+    } = this.props;
+
     const newTask = {
       userId: userId,
       title: title,
       completed: false
     };
-    saveTask(newTask);
+
+    if (userId && taskId) {
+      const task = tasks[userId][taskId];
+      const editedTask = {
+        ...newTask,
+        completed: task.completed,
+        id: taskId
+      };
+      editTask(editedTask);
+    }
+    else {
+      saveTask(newTask);
+    }
   }
 
   disable = () => {
