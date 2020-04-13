@@ -6,13 +6,20 @@ const INITIAL_STATE = {
     error: '',
     userId: '',
     title: '',
+    goBack: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
         case ActionType.GET_ALL:
-            return {...state, tasks: action.payload, loading: false, error: ''};
+            return {
+                ...state,
+                tasks: action.payload,
+                loading: false,
+                error: '',
+                goBack: false
+            };
 
         case ActionType.LOADING:
             return {...state, loading: true};
@@ -27,7 +34,15 @@ export default (state = INITIAL_STATE, action) => {
             return {...state, title: action.payload};
 
         case ActionType.TASK_ADDED:
-            return {...state, loading: false, tasks: {}, error: ''};
+            return {
+                ...state,
+                loading: false,
+                tasks: {},
+                error: '',
+                goBack: true,
+                userId: '',
+                title: ''
+            };
 
         default: return state;
     }

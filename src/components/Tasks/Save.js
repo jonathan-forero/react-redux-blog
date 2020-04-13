@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from '../Spinner/Spinner';
 import Error from '../Error/Error';
+import { Redirect } from 'react-router-dom';
 
 class Save extends Component {
   changeUserId = (event) => {
@@ -45,8 +46,12 @@ class Save extends Component {
   };
 
   render() {
+    const { goBack } = this.props;
     return (
       <div className="save-tasks">
+        {
+          goBack ? <Redirect to="/react-redux-blog/tasks" /> : null
+        }
         <h1>
           Save Task
         </h1>
