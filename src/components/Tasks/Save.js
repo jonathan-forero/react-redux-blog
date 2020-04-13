@@ -109,12 +109,16 @@ class Save extends Component {
         />
         <br/>
         <br/>
-        <button
-          onClick={ this.save }
-          disabled={ this.disable() }
-        >
-          Save
-        </button>
+        {
+          !this.disable() && (
+            <div
+              class="tv-solid icon"
+              onClick={ this.save }
+              disabled={ this.disable() }
+              title="Save"
+            ></div>
+          )
+        }
         { this.showAction() }
       </div>
     );

@@ -55,37 +55,43 @@ class Tasks extends Component {
     };
 
     return Object.keys(byUser).map(taskId => (
-      <div key={taskId}>
-        <input
-          type="checkbox"
-          defaultChecked={byUser[taskId].completed}
-          onChange={ () => changeChekbox(userId, taskId) }
-        />
-        {
-          byUser[taskId].title
-        }
-        <Link to={`/react-redux-blog/tasks/save/${userId}/${taskId}`}>
-          <button className="m_left">
-            Edit
-          </button>
-        </Link>
-        <button
-          className="m_left"
-          onClick={ () => deleteTask(taskId) }
-        >
-            Delete
-        </button>
+      <div className="grid">
+        <div className="row task-row" key={taskId}>
+          <div>
+            <input
+              type="checkbox"
+              defaultChecked={byUser[taskId].completed}
+              onChange={ () => changeChekbox(userId, taskId) }
+            />
+          </div>
+          <div className="col-6">
+            {
+              byUser[taskId].title
+            }
+          </div>
+          <div className="col-1">
+            <Link to={`/react-redux-blog/tasks/save/${userId}/${taskId}`}>
+              <div className="edit-solid icon" title="Edit"></div>
+            </Link>
+          </div>
+          <div className="col-1">
+            <div
+                className="trash-solid icon m_left"
+                onClick={ () => deleteTask(taskId) }
+                title="Delete"
+              >
+              </div>
+          </div>
+        </div>
       </div>
     ));
   };
 
   render() {
     return (
-      <div>
+      <div className="flex-column">
         <Link to='/react-redux-blog/tasks/save'>
-          <button>
-            Add
-          </button>
+          <div class="card-solid icon" title="Add"></div>
         </Link>
         { this.showContent() }
       </div>
