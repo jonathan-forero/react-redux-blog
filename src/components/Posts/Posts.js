@@ -84,7 +84,6 @@ class Posts extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <>
         { this.setUser() }

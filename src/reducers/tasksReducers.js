@@ -47,6 +47,9 @@ export default (state = INITIAL_STATE, action) => {
         case ActionType.UPDATE:
             return {...state, tasks: action.payload};
 
+        case ActionType.CLEAN:
+            return {...state, userId: '', title: ''};
+
         default: return state;
     }
 }

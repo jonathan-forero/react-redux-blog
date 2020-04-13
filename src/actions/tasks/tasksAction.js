@@ -111,17 +111,21 @@ export const deleteTask = (taskId) => async (dispatch) => {
     });
 
     try {
-        const response = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${taskId}`);
-        console.log(response);
+        await axios.delete(`https://jsonplaceholder.typicode.com/todos/${taskId}`);
         dispatch({
             type: ActionType.GET_ALL,
             payload: {}
         });
     } catch (error) {
-        console.log(error.message);
         dispatch({
             type: ActionType.ERROR,
             payload: error.message + ' - Delete Task Fail, please try later'
         });
     }
+}
+
+export const cleanForm = () => (dispatch) => {
+    dispatch({
+        type: ActionType.CLEAN
+    });
 }
