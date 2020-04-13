@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Spinner from '../Spinner/Spinner';
+import Error from '../Error/Error';
 
 class Save extends Component {
   changeUserId = (event) => {
@@ -18,6 +20,29 @@ class Save extends Component {
     };
     saveTask(newTask);
   }
+
+  disable = () => {
+    const {
+      userId,
+      title,
+      loading
+    } = this.props;
+
+    return (
+      loading ? true :
+        !userId || !title ? true :
+          false
+    );
+  };
+
+  showAction = () => {
+    const { error, loading } = this.props;
+    return (
+      loading ? <Spinner /> :
+        error ? <Error message={error} /> :
+          null
+    );
+  };
 
   render() {
     return (
@@ -43,9 +68,11 @@ class Save extends Component {
         <br/>
         <button
           onClick={ this.save }
+          disabled={ this.disable() }
         >
           Save
         </button>
+        { this.showAction() }
       </div>
     );
   }
